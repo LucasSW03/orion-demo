@@ -1,0 +1,514 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Orión Aviation Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Orión brand tokens — sampled from the real logo and LinkedIn cover */
+  :root{
+    --burgundy:#771428;
+    --burgundy-deep:#4A0F1C;
+    --burgundy-ink:#2E0A12;
+    --carbon:#0F1214;
+    --carbon-2:#1A1E22;
+    --ink:#14171A;
+    --ink-2:#4B5257;
+    --silver:#B4B9BB;
+    --concrete:#E9EBEC;
+    --concrete-2:#F4F5F6;
+    --white:#FFFFFF;
+    --line:rgba(20,23,26,.12);
+    --line-dark:rgba(255,255,255,.14);
+    --display:"Archivo",system-ui,sans-serif;
+    --body:"IBM Plex Sans",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --max:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--concrete);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.02;letter-spacing:-.01em}
+  h1{font-weight:800;font-stretch:112%;font-size:clamp(2.4rem,6vw,5rem)}
+  h2{font-weight:800;font-stretch:110%;font-size:clamp(1.8rem,3.6vw,2.7rem)}
+  h3{font-weight:700;font-stretch:105%;font-size:1.15rem;line-height:1.2}
+  p{margin:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy)}
+  .eyebrow.on-dark{color:var(--silver)}
+  .lede{font-size:1.1rem;color:var(--ink-2);max-width:60ch}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--display);font-weight:700;font-stretch:105%;font-size:.95rem;letter-spacing:.02em;text-decoration:none;padding:.9rem 1.35rem;border:1.5px solid transparent;border-radius:4px;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s}
+  .btn:focus-visible{outline:3px solid var(--silver);outline-offset:3px}
+  .btn-primary{background:var(--burgundy);color:var(--white)}
+  .btn-primary:hover{background:var(--burgundy-deep)}
+  .btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+  .btn-dark{background:var(--carbon);color:var(--white)}
+  .btn-dark:hover{background:var(--carbon-2)}
+  .btn svg{width:16px;height:16px}
+
+  /* Concept tag — remove before going live */
+  .concept-tag{position:fixed;right:16px;bottom:16px;z-index:50;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;background:var(--carbon);color:var(--silver);padding:.45rem .7rem;border-radius:3px;border:1px solid var(--line-dark)}
+
+  /* Nav */
+  .nav{position:sticky;top:0;z-index:40;background:var(--burgundy);color:var(--white);border-bottom:1px solid rgba(0,0,0,.18)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand img{height:26px;width:auto}
+  .brand span{font-family:var(--display);font-weight:500;font-stretch:110%;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8);padding-left:12px;border-left:1px solid rgba(255,255,255,.35)}
+  .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+  .nav-links a{font-size:.92rem;font-weight:500;text-decoration:none;color:rgba(255,255,255,.88);padding:.4rem 0;border-bottom:2px solid transparent}
+  .nav-links a:hover{color:var(--white);border-bottom-color:rgba(255,255,255,.7)}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  .nav-cta .btn{padding:.6rem 1rem;font-size:.85rem}
+  .nav-cta .btn-primary{background:var(--carbon)}
+  .nav-cta .btn-primary:hover{background:var(--carbon-2)}
+  .menu-btn{display:none;background:none;border:1px solid rgba(255,255,255,.5);color:var(--white);border-radius:4px;padding:.5rem .7rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;cursor:pointer}
+
+  /* Hero */
+  .hero{position:relative;background:var(--carbon);color:var(--white);isolation:isolate;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:-2;background:url("img/bell205-hangar.webp") center 40%/cover no-repeat;filter:saturate(.85)}
+  .hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(15,18,20,.94) 0%,rgba(46,10,18,.82) 45%,rgba(15,18,20,.55) 100%)}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;padding-top:96px;padding-bottom:88px;align-items:end}
+  .hero-copy{display:grid;gap:26px}
+  .hero-copy h1 em{font-style:normal;color:var(--silver)}
+  .hero-copy .lede{color:rgba(255,255,255,.82);font-size:1.15rem}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-aside{display:grid;gap:10px;align-content:end;justify-items:end;text-align:right}
+  .hero-aside .stamp{font-family:var(--mono);font-size:.8rem;color:var(--silver);line-height:1.7}
+  .hero-aside .stamp b{color:var(--white);font-weight:500}
+  .hero-aside .mark{width:120px;height:120px;border-radius:50%;background:var(--burgundy);display:grid;place-items:center;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .hero-aside .mark img{width:78px}
+
+  /* Data rail — airport codes where Orión actually works */
+  .rail{background:var(--carbon-2);color:var(--silver);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
+  .rail .wrap{display:grid;grid-template-columns:repeat(4,1fr);min-height:64px}
+  .rail-item{display:flex;align-items:center;gap:14px;padding:14px 0;font-family:var(--mono);font-size:.82rem;border-right:1px solid var(--line-dark)}
+  .rail-item:last-child{border-right:0}
+  .rail-item + .rail-item{padding-left:20px}
+  .rail-item .code{font-family:var(--display);font-weight:800;font-stretch:115%;font-size:1.35rem;color:var(--white);letter-spacing:.02em}
+  .rail-item small{display:block;color:var(--silver);font-size:.74rem;letter-spacing:.06em}
+
+  /* Sections */
+  section{padding:88px 0}
+  .section-head{display:grid;gap:14px;margin-bottom:44px;max-width:70ch}
+  .section-head.split{display:grid;grid-template-columns:1fr auto;align-items:end;max-width:none;gap:32px}
+
+  /* Capabilities */
+  .caps{background:var(--concrete)}
+  .caps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .cap{background:var(--white);padding:28px 26px 30px;display:grid;gap:14px;align-content:start;min-height:280px;position:relative}
+  .cap .ata{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--ink-2)}
+  .cap .ata b{color:var(--burgundy);font-weight:500}
+  .cap p{color:var(--ink-2);font-size:.95rem}
+  .cap ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:.9rem}
+  .cap li{display:flex;gap:10px;align-items:baseline}
+  .cap li::before{content:"";width:6px;height:6px;background:var(--burgundy);flex:none;transform:translateY(-2px)}
+
+  /* Works log */
+  .works{background:var(--white)}
+  .works-layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:start}
+  .log{border-top:2px solid var(--ink);font-size:.95rem}
+  .log-row{display:grid;grid-template-columns:96px 1fr 72px;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .log-row time{font-family:var(--mono);font-size:.8rem;color:var(--ink-2)}
+  .log-row .what{display:grid;gap:3px}
+  .log-row .what b{font-weight:600}
+  .log-row .what span{color:var(--ink-2);font-size:.9rem}
+  .log-row .where{font-family:var(--mono);font-size:.8rem;text-align:right;color:var(--burgundy);font-weight:500}
+  .log-foot{font-family:var(--mono);font-size:.76rem;color:var(--ink-2);padding-top:14px;letter-spacing:.04em}
+  .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .photo{position:relative;overflow:hidden;background:var(--carbon);aspect-ratio:4/3}
+  .photo:first-child{grid-column:1/-1;aspect-ratio:16/8}
+  .photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform .5s ease}
+  .photo:hover img{transform:scale(1.03)}
+  .photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(transparent,rgba(15,18,20,.85));color:var(--white);font-size:.85rem;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .photo figcaption span{font-family:var(--mono);font-size:.74rem;color:var(--silver)}
+
+  /* Hangar */
+  .hangar{background:var(--carbon);color:var(--white);padding:0}
+  .hangar-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);min-height:520px}
+  .hangar-media{position:relative;overflow:hidden;min-height:320px}
+  .hangar-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 8%}
+  .hangar-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,var(--carbon) 100%)}
+  .hangar-copy{padding:88px 24px 88px 64px;display:grid;gap:22px;align-content:center}
+  .hangar-copy .lede{color:rgba(255,255,255,.78)}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 32px;margin-top:8px;padding-top:22px;border-top:1px solid var(--line-dark)}
+  .fact{display:grid;gap:4px}
+  .fact dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--silver)}
+  .fact dd{margin:0;font-family:var(--display);font-weight:700;font-stretch:108%;font-size:1.25rem}
+
+  /* Pillars */
+  .why{background:var(--concrete-2)}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .pillar{display:grid;gap:12px;padding-top:18px;border-top:2px solid var(--burgundy)}
+  .pillar p{color:var(--ink-2)}
+  .quote{margin:64px auto 0;max-width:34ch;text-align:center;font-family:var(--display);font-weight:700;font-stretch:108%;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.15;color:var(--burgundy)}
+  .quote small{display:block;margin-top:12px;font-family:var(--mono);font-weight:400;font-size:.75rem;letter-spacing:.12em;color:var(--ink-2)}
+
+  /* Instagram strip */
+  .feed{background:var(--white);padding:56px 0}
+  .feed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .feed-grid a{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--carbon)}
+  .feed-grid img{width:100%;height:100%;object-fit:cover}
+
+  /* Contact */
+  .contact{background:var(--burgundy);color:var(--white)}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
+  .contact-copy{display:grid;gap:20px}
+  .contact-copy .lede{color:rgba(255,255,255,.82)}
+  .contact-list{display:grid;gap:14px;margin-top:8px;padding-top:20px;border-top:1px solid rgba(255,255,255,.25);font-size:.95rem}
+  .contact-list div{display:grid;gap:2px}
+  .contact-list dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .contact-list dd{margin:0}
+  form{background:var(--white);color:var(--ink);padding:32px;border-radius:6px;display:grid;gap:18px;box-shadow:0 30px 70px rgba(0,0,0,.25)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{display:grid;gap:6px;font-size:.85rem;font-weight:500}
+  input,select,textarea{font:inherit;font-size:.95rem;padding:.7rem .8rem;border:1px solid var(--line);border-radius:4px;background:var(--concrete-2);color:var(--ink);width:100%}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--burgundy);outline-offset:1px;background:var(--white)}
+  textarea{min-height:110px;resize:vertical}
+  .seg{position:relative;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .seg input{position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
+  .seg span{padding:.7rem;text-align:center;font-size:.9rem;cursor:pointer;background:var(--concrete-2)}
+  .seg input:checked + span{background:var(--carbon);color:var(--white)}
+  .seg input:focus-visible + span{outline:2px solid var(--burgundy);outline-offset:-2px}
+  .form-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .form-foot small{color:var(--ink-2);font-size:.8rem;max-width:36ch}
+  .sent{display:none;padding:18px;border:1px solid var(--burgundy);border-radius:4px;background:#FBF3F5;color:var(--burgundy-ink);font-size:.95rem}
+  form.is-sent .sent{display:block}
+  form.is-sent .fields{display:none}
+
+  /* Footer */
+  footer{background:var(--carbon);color:var(--silver);padding:40px 0 84px}
+  footer .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+  footer .brand img{height:22px}
+  footer .brand span{color:var(--silver);border-left-color:var(--line-dark)}
+  footer nav{display:flex;gap:22px;font-size:.88rem}
+  footer nav a{text-decoration:none;color:var(--silver)}
+  footer nav a:hover{color:var(--white)}
+  footer .legal{grid-column:1/-1;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;padding-top:20px;border-top:1px solid var(--line-dark)}
+
+  @media (max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;padding-top:72px;padding-bottom:64px}
+    .hero-aside{justify-items:start;text-align:left}
+    .rail .wrap{grid-template-columns:1fr 1fr}
+    .rail-item{border-right:0;border-bottom:1px solid var(--line-dark)}
+    .rail-item + .rail-item{padding-left:0}
+    .caps-grid{grid-template-columns:1fr 1fr}
+    .works-layout,.contact-grid,.hangar-grid{grid-template-columns:1fr}
+    .hangar-copy{padding:56px 24px}
+    .pillars{grid-template-columns:1fr;gap:28px}
+    .feed-grid{grid-template-columns:1fr 1fr}
+    .section-head.split{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .nav-links,.nav-cta .btn-ghost{display:none}
+    .menu-btn{display:inline-block}
+    .nav.open .nav-links{display:grid;position:absolute;left:0;right:0;top:68px;background:var(--burgundy-deep);padding:18px 24px;gap:6px}
+    .caps-grid{grid-template-columns:1fr}
+    .cap{min-height:0}
+    .row{grid-template-columns:1fr}
+    .log-row{grid-template-columns:80px 1fr;gap:12px}
+    .log-row .where{grid-column:2;text-align:left}
+    .photos{grid-template-columns:1fr}
+    .photo:first-child{aspect-ratio:4/3}
+    footer .wrap{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .photo img{transition:none}
+  }
+</style>
+
+<a class="concept-tag" href="https://krimisa.com.ar" target="_blank" rel="noopener" style="text-decoration:none">CONCEPTO v1 · KRIMISA · 09/2026</a>
+
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Orión Aviation Center">
+      <img src="img/logo-white.png" alt="Orión">
+      <span>Aviation Center</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#trabajos">Trabajos</a></li>
+      <li><a href="#hangar">Hangar</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#contacto" data-aog>AOG 24/7</a>
+      <a class="btn btn-primary" href="#contacto">Solicitar cotización</a>
+      <button class="menu-btn" type="button" aria-label="Abrir menú" data-menu>MENÚ</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" role="img" aria-label="Helicóptero Bell 205 en el hangar de Orión durante una reparación estructural"></div>
+  <div class="hero-shade"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow on-dark">Centro de Mantenimiento Integral de Aeronaves · Aeropuerto de Morón</p>
+      <h1 id="hero-title">Volar seguro empieza en tierra.<br><em>Empieza en el taller.</em></h1>
+      <p class="lede">Reparaciones estructurales, aviónica y mantenimiento de línea para Airbus A320, helicópteros y aviación general. En nuestro hangar de Morón o donde esté tu aeronave.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contacto">Solicitar cotización
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#contacto" data-aog>Tengo un AOG</a>
+      </div>
+    </div>
+    <div class="hero-aside" aria-hidden="true">
+      <div class="mark"><img src="img/logo-white.png" alt=""></div>
+      <p class="stamp"><b>SADM</b> · Aeropuerto de Morón<br>Buenos Aires · Argentina<br>Hangar propio · desde 2026</p>
+    </div>
+  </div>
+</section>
+
+<div class="rail" aria-label="Aeropuertos donde operamos">
+  <div class="wrap">
+    <div class="rail-item"><span class="code">SADM</span><span>Morón<small>Base · hangar propio</small></span></div>
+    <div class="rail-item"><span class="code">SABE</span><span>Aeroparque<small>Trabajos en línea</small></span></div>
+    <div class="rail-item"><span class="code">SAEZ</span><span>Ezeiza<small>Trabajos en línea</small></span></div>
+    <div class="rail-item"><span class="code">AOG</span><span>Donde esté el avión<small>Equipo móvil</small></span></div>
+  </div>
+</div>
+
+<section class="caps" id="servicios" aria-labelledby="caps-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Servicios</p>
+      <h2 id="caps-title">Capacidad técnica para cada tipo de operación.</h2>
+      <p class="lede">Un mismo equipo para el trabajo pesado de estructuras y para el detalle fino de sistemas. Con la trazabilidad que exige la industria.</p>
+    </div>
+    <div class="caps-grid">
+      <article class="cap">
+        <p class="ata"><b>ATA 51–57</b> · ESTRUCTURAS</p>
+        <h3>Reparaciones estructurales</h3>
+        <p>Daños por impacto, corrosión y fatiga en fuselaje, nacelas, radomes y superficies de control.</p>
+        <ul>
+          <li>Airbus A320 family</li>
+          <li>Reparación de radome y tomas de aire</li>
+          <li>Cambio de ventanillas y parabrisas</li>
+        </ul>
+      </article>
+      <article class="cap">
+        <p class="ata"><b>ATA 34</b> · NAVEGACIÓN</p>
+        <h3>Aviónica y sistemas</h3>
+        <p>Instalación, reparación y pruebas funcionales de antenas y equipos de a bordo.</p>
+        <ul>
+          <li>Antenas TCAS, VHF y transponder</li>
+          <li>Pruebas y troubleshooting en línea</li>
+          <li>Documentación de trabajo</li>
+        </ul>
+      </article>
+      <article class="cap">
+        <p class="ata"><b>ATA 62–67</b> · ROTORES</p>
+        <h3>Helicópteros</h3>
+        <p>Reparaciones estructurales y mantenimiento de helicópteros en hangar, con espacio para trabajo de rotor.</p>
+        <ul>
+          <li>Bell 205 / Huey family</li>
+          <li>Estructuras de fuselaje y botalón</li>
+          <li>Inspecciones programadas</li>
+        </ul>
+      </article>
+      <article class="cap">
+        <p class="ata"><b>ATA 05 / 12</b> · LÍNEA</p>
+        <h3>Mantenimiento de línea y AOG</h3>
+        <p>Trasladamos la capacidad técnica hasta donde la operación lo requiera. Respuesta para aeronaves en tierra.</p>
+        <ul>
+          <li>Aeroparque y Ezeiza</li>
+          <li>Aviación general y turbohélice</li>
+          <li>Equipo móvil y herramental propio</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="works" id="trabajos" aria-labelledby="works-title">
+  <div class="wrap">
+    <div class="section-head split">
+      <div>
+        <p class="eyebrow">Trabajos recientes</p>
+        <h2 id="works-title">Registro de intervenciones.</h2>
+      </div>
+      <a class="btn btn-dark" href="https://www.instagram.com/orion.aviationcenter/" target="_blank" rel="noopener">Ver más en Instagram</a>
+    </div>
+    <div class="works-layout">
+      <div class="log" aria-label="Últimos trabajos realizados">
+        <div class="log-row"><time datetime="2026-09-02">02 SEP 26</time><div class="what"><b>Reparación estructural por impacto</b><span>Airbus A320</span></div><span class="where">SAEZ</span></div>
+        <div class="log-row"><time datetime="2026-08-27">27 AGO 26</time><div class="what"><b>Reparación e instalación de antena TCAS</b><span>Airbus A320</span></div><span class="where">SABE</span></div>
+        <div class="log-row"><time datetime="2026-08">AGO 26</time><div class="what"><b>Apertura del hangar</b><span>Nueva base operativa</span></div><span class="where">SADM</span></div>
+        <div class="log-row"><time datetime="2024-07-04">04 JUL 24</time><div class="what"><b>Reparación de radome</b><span>Fairchild Metro 23</span></div><span class="where">—</span></div>
+        <div class="log-row"><time datetime="2024-07-04">04 JUL 24</time><div class="what"><b>Reparación de toma de aire</b><span>Airbus A320</span></div><span class="where">—</span></div>
+        <div class="log-row"><time datetime="2024-05-12">12 MAY 24</time><div class="what"><b>Reparación estructural zona inferior de motor</b><span>Airbus A320</span></div><span class="where">—</span></div>
+        <div class="log-row"><time datetime="2024-05-12">12 MAY 24</time><div class="what"><b>Reparaciones estructurales</b><span>Bell 205</span></div><span class="where">—</span></div>
+        <div class="log-row"><time datetime="2024-05-12">12 MAY 24</time><div class="what"><b>Cambio de ventanilla</b><span>Airbus A320</span></div><span class="where">—</span></div>
+        <p class="log-foot">Fuente: publicaciones de Orión. Se completa con matrícula y OT en la versión final.</p>
+      </div>
+      <div class="photos">
+        <figure class="photo"><img src="img/a320-estructural-eze.jpg" alt="Reparación estructural por impacto en un Airbus A320 en plataforma de Ezeiza"><figcaption>Reparación estructural por impacto · A320<span>SAEZ</span></figcaption></figure>
+        <figure class="photo"><img src="img/a320-tcas-aep.jpg" alt="Instalación de antena TCAS en Airbus A320 en Aeroparque"><figcaption>Antena TCAS · A320<span>SABE</span></figcaption></figure>
+        <figure class="photo"><img src="img/trabajo-2024-b.webp" alt="Motor de Airbus A320 con capots abiertos durante reparación estructural"><figcaption>Zona inferior de motor · A320<span>2024</span></figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hangar" id="hangar" aria-labelledby="hangar-title">
+  <div class="hangar-grid">
+    <div class="hangar-media">
+      <img src="img/hangar-interior.jpg" alt="Interior del hangar de Orión en Morón con helicópteros en mantenimiento">
+    </div>
+    <div class="hangar-copy">
+      <p class="eyebrow on-dark">El hangar</p>
+      <h2 id="hangar-title">Nueva casa en el Aeropuerto de Morón.</h2>
+      <p class="lede">Infraestructura propia pensada para mantenimiento, cuidado y operación de aeronaves. Inaugurado en 2026 como resultado de años de experiencia en la industria.</p>
+      <dl class="facts">
+        <div class="fact"><dt>Aeródromo</dt><dd>SADM · Morón</dd></div>
+        <div class="fact"><dt>Ubicación</dt><dd>Buenos Aires (1708)</dd></div>
+        <div class="fact"><dt>Hangar</dt><dd>Propio · 2026</dd></div>
+        <div class="fact"><dt>Aeronaves</dt><dd>Ala fija y rotativa</dd></div>
+      </dl>
+      <div><a class="btn btn-ghost" href="https://www.google.com/maps/search/Aeropuerto+de+Mor%C3%B3n" target="_blank" rel="noopener">Cómo llegar</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="nosotros" aria-labelledby="why-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Nosotros</p>
+      <h2 id="why-title">La pasión y la experiencia construyen lo que somos.</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Seguridad operacional</h3>
+        <p>La seguridad de un vuelo no se decide en el aire. Comienza en cada inspección, en cada procedimiento y en cada tarea bien hecha en tierra.</p>
+      </div>
+      <div class="pillar">
+        <h3>Experiencia real</h3>
+        <p>Años de trabajo sobre Airbus A320, helicópteros y aviación general, ahora con hangar propio e infraestructura para crecer.</p>
+      </div>
+      <div class="pillar">
+        <h3>Vamos donde está el avión</h3>
+        <p>Equipo móvil con herramental propio para intervenir en Aeroparque, Ezeiza o donde la operación lo necesite.</p>
+      </div>
+    </div>
+    <p class="quote">La excelencia forma parte de nuestra checklist.<small>Orión Aviation Center</small></p>
+  </div>
+</section>
+
+<section class="feed" aria-label="Instagram">
+  <div class="wrap">
+    <div class="section-head split" style="margin-bottom:24px">
+      <p class="eyebrow">@orion.aviationcenter</p>
+      <a href="https://www.instagram.com/orion.aviationcenter/" target="_blank" rel="noopener" style="font-size:.9rem">Seguinos en Instagram →</a>
+    </div>
+    <div class="feed-grid">
+      <a href="https://www.instagram.com/orion.aviationcenter/p/Dcdq1GkMB3V/" target="_blank" rel="noopener"><img src="img/hangar-dusk.jpg" alt="Hangar de Orión al atardecer: casi ready to fly"></a>
+      <a href="https://www.instagram.com/orion.aviationcenter/p/DcR64qMJgsX/" target="_blank" rel="noopener"><img src="img/hangar-reveal.jpg" alt="Presentación del logo de Orión sobre el hangar nuevo"></a>
+      <a href="https://www.instagram.com/orion.aviationcenter/p/DctVDSZsX3l/" target="_blank" rel="noopener"><img src="img/avioneta-hangar.jpg" alt="Avioneta frente al hangar: volar seguro empieza en tierra"></a>
+      <a href="https://www.instagram.com/orion.aviationcenter/p/DdEJY6Rsf_c/" target="_blank" rel="noopener"><img src="img/hangar-interior.jpg" alt="Interior del hangar: enfocados y comprometidos con la excelencia"></a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto" aria-labelledby="contact-title">
+  <div class="wrap contact-grid">
+    <div class="contact-copy">
+      <p class="eyebrow on-dark">Contacto</p>
+      <h2 id="contact-title">Contanos qué necesita tu aeronave.</h2>
+      <p class="lede">Respondemos cotizaciones dentro de las 24 horas hábiles. Para aeronaves en tierra, marcá la solicitud como AOG y la atendemos con prioridad.</p>
+      <dl class="contact-list">
+        <div><dt>Base</dt><dd>Aeropuerto de Morón · Buenos Aires (1708)</dd></div>
+        <div><dt>Horario</dt><dd>Lunes a viernes 8 a 18 h · AOG 24/7</dd></div>
+        <div><dt>Redes</dt><dd><a href="https://www.instagram.com/orion.aviationcenter/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/company/orionaviationcenter/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
+      </dl>
+    </div>
+    <form id="quote" novalidate>
+      <div class="fields" style="display:grid;gap:18px">
+        <div class="row">
+          <label>Empresa u operador<input type="text" name="empresa" placeholder="Nombre de la empresa" required></label>
+          <label>Contacto<input type="text" name="contacto" placeholder="Nombre y apellido" required></label>
+        </div>
+        <div class="row">
+          <label>Email<input type="email" name="email" placeholder="nombre@empresa.com" required></label>
+          <label>Teléfono / WhatsApp<input type="tel" name="tel" placeholder="+54 9 11 ..."></label>
+        </div>
+        <div class="row">
+          <label>Tipo de aeronave
+            <select name="aeronave">
+              <option>Airbus A320 family</option>
+              <option>Helicóptero</option>
+              <option>Turbohélice / regional</option>
+              <option>Aviación general</option>
+              <option>Otra</option>
+            </select>
+          </label>
+          <label>Matrícula<input type="text" name="matricula" placeholder="LV-XXX"></label>
+        </div>
+        <div class="row">
+          <label>Ubicación de la aeronave
+            <select name="ubicacion">
+              <option>Morón (SADM)</option>
+              <option>Aeroparque (SABE)</option>
+              <option>Ezeiza (SAEZ)</option>
+              <option>Otro aeródromo</option>
+            </select>
+          </label>
+          <label>Urgencia
+            <div class="seg">
+              <label><input type="radio" name="urgencia" value="programado" checked><span>Programado</span></label>
+              <label><input type="radio" name="urgencia" value="aog" id="urg-aog"><span>AOG</span></label>
+            </div>
+          </label>
+        </div>
+        <label>Descripción del trabajo<textarea name="detalle" placeholder="Qué pasó, qué necesitan y para cuándo."></textarea></label>
+        <div class="form-foot">
+          <small>Al enviar, la solicitud llega al equipo técnico por email y WhatsApp.</small>
+          <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+        </div>
+      </div>
+      <div class="sent" role="status">
+        <b>Solicitud recibida.</b> En la versión final este mensaje confirma el envío y el equipo de Orión recibe el detalle por email y WhatsApp. En este concepto no se envía nada.
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Orión Aviation Center"><img src="img/logo-white.png" alt="Orión"><span>Aviation Center</span></a>
+    <nav aria-label="Pie de página">
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajos">Trabajos</a>
+      <a href="#hangar">Hangar</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <p class="legal">ORIÓN AVIATION CENTER · AEROPUERTO DE MORÓN · BUENOS AIRES · ARGENTINA · CENTRO DE MANTENIMIENTO INTEGRAL DE AERONAVES · CONCEPTO POR <a href="https://krimisa.com.ar" target="_blank" rel="noopener" style="color:inherit">KRIMISA</a></p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const nav = document.querySelector('.nav');
+  document.querySelector('[data-menu]').addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // "AOG" entry points preselect the urgency
+  document.querySelectorAll('[data-aog]').forEach(a => a.addEventListener('click', () => {
+    document.getElementById('urg-aog').checked = true;
+  }));
+
+  // Concept form: validate and show the confirmation state, no network call
+  const form = document.getElementById('quote');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    form.classList.add('is-sent');
+    form.querySelector('.sent').scrollIntoView({ block: 'center', behavior: 'smooth' });
+  });
+</script>
