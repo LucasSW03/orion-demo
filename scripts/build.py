@@ -35,8 +35,16 @@ def build() -> None:
     DIST.mkdir()
     (DIST / "index.html").write_text(wrap_document(SRC.read_text(encoding="utf-8")), encoding="utf-8")
     shutil.copytree(IMG, DIST / "img")
-    # Demo must never be indexed: it would compete with the real site later.
-    (DIST / "robots.txt").write_text("User-agent: *\nDisallow: /\n", encoding="utf-8")
+    # Demo must never be indexed (it would compete with the real site later),
+    # but link unfurlers need access so the URL previews well in LinkedIn and WhatsApp.
+    (DIST / "robots.txt").write_text(
+        "User-agent: LinkedInBot\nAllow: /\n\n"
+        "User-agent: WhatsApp\nAllow: /\n\n"
+        "User-agent: facebookexternalhit\nAllow: /\n\n"
+        "User-agent: Twitterbot\nAllow: /\n\n"
+        "User-agent: *\nDisallow: /\n",
+        encoding="utf-8",
+    )
     (DIST / "CNAME").write_text(DEMO_DOMAIN + "\n", encoding="utf-8")
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
     files = sorted(p.relative_to(DIST).as_posix() for p in DIST.rglob("*") if p.is_file())
